@@ -1,0 +1,145 @@
+-- phpMyAdmin SQL Dump
+-- version 3.5.2.2
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: Oct 15, 2013 at 09:46 PM
+-- Server version: 5.5.27
+-- PHP Version: 5.4.7
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Database: `retailapp`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bill`
+--
+
+CREATE TABLE IF NOT EXISTS `bill` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `bill_number` varchar(255) NOT NULL,
+  `customer_id` varchar(255) NOT NULL,
+  `product_id` varchar(255) NOT NULL,
+  `quantity` varchar(255) NOT NULL,
+  `discount_per_item` varchar(255) NOT NULL,
+  `discount_amount_per_item` varchar(255) NOT NULL,
+  `amount_per_item` varchar(255) NOT NULL,
+  `total_item` varchar(255) NOT NULL,
+  `sub_total` varchar(255) NOT NULL,
+  `main_discount` varchar(255) NOT NULL,
+  `grand_total` varchar(255) NOT NULL,
+  `pay` varchar(255) NOT NULL,
+  `due` varchar(255) NOT NULL,
+  `created_date` datetime NOT NULL,
+  `status` tinyint(2) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=55 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `brand`
+--
+
+CREATE TABLE IF NOT EXISTS `brand` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `brand` varchar(255) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `category`
+--
+
+CREATE TABLE IF NOT EXISTS `category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `category` varchar(255) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer`
+--
+
+CREATE TABLE IF NOT EXISTS `customer` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `phone_no` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `bill_no` varchar(255) NOT NULL,
+  `due` varchar(255) NOT NULL,
+  `total_due` varchar(255) NOT NULL DEFAULT '0',
+  `paid_due` varchar(255) NOT NULL,
+  `total_paid_due` varchar(255) NOT NULL DEFAULT '0',
+  `paid_due_date` varchar(2000) NOT NULL,
+  `created_date` datetime NOT NULL,
+  `notification_status` char(1) NOT NULL DEFAULT '1',
+  `status` tinyint(2) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product`
+--
+
+CREATE TABLE IF NOT EXISTS `product` (
+  `product_id` int(11) NOT NULL AUTO_INCREMENT,
+  `category` varchar(255) NOT NULL DEFAULT 'misc',
+  `product_name` varchar(255) NOT NULL,
+  `qty` int(11) NOT NULL,
+  `sell_qty` int(11) NOT NULL DEFAULT '0',
+  `price` int(11) NOT NULL,
+  `brand` varchar(255) NOT NULL,
+  `color` varchar(255) NOT NULL,
+  `size` varchar(255) NOT NULL,
+  `type` varchar(255) NOT NULL,
+  `notification_status` char(1) NOT NULL DEFAULT '1',
+  `status` char(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`product_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sam`
+--
+
+CREATE TABLE IF NOT EXISTS `sam` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `command` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `privileges` varchar(255) NOT NULL,
+  `notification` char(1) NOT NULL DEFAULT '0',
+  `due_day` int(11) NOT NULL DEFAULT '7',
+  `stock_item` int(11) NOT NULL DEFAULT '10',
+  `status` tinyint(2) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
